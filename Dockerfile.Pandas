@@ -19,3 +19,5 @@ CMD ["python","server_pandas/app.py"]
 
 # docker run --rm -it --name server_pandas python:3.8.13 bash
 # docker run -itd --name server_pandas python:3.8.13 
+# docker build -t ehdudtkatka/quant-coin-pandas:0.1 -f Dockerfile.Pandas .
+# docker push ehdudtkatka/quant-coin-pandas:0.1
