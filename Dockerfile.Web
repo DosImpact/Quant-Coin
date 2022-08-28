@@ -30,7 +30,7 @@ CMD ["npm","run","start:client"]
 
 # docker run --rm -it --name node_web node:16 bash
 # docker run -itd --name node_web node:16 
-# docker build -t ehdudtkatka/quant-coin-web:0.1 -f Dockerfile.Web .
-# docker push ehdudtkatka/quant-coin-web:0.1
+# docker build --build-arg http://dosimpact.iptime.org:34000 -t ehdudtkatka/quant-coin-web:0.1.1 -f Dockerfile.Web .
+# docker push ehdudtkatka/quant-coin-web:0.1.1
 
 
