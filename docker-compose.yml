@@ -13,9 +13,9 @@ services:
       - "${WEB_PORT}:3000"
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    env_file: .env
-    # environment: 
-      # - SERVER_URI_PANDAS=${SERVER_URI_PANDAS}
+    # env_file: .env
+    environment: 
+      - SERVER_URI_PANDAS=${SERVER_URI_PANDAS}
 
   pandas_server:
     build:
@@ -49,5 +49,6 @@ services:
 
 # explicit env_file
 # docker-compose --env-file ./.env up -d
+# docker-compose --env-file ./.env up -d --build
 # docker-compose up -d --build
 # redis-cli -h 127.0.0.1 -p 5001 -a dosimpact

@@ -9,8 +9,8 @@ ENV SERVER_URI_PANDAS ${SERVER_URI_PANDAS}
 
 # validation
 RUN if [  -z $SERVER_URI_PANDAS ];then \
-  >&2 echo  "\n****************Warning*************\n"; \
-  >&2 echo "[Warning] SERVER_URI_PANDAS seems empty" ;\
+  >&2 echo "[Warning] SERVER_URI_PANDAS seems empty" ; else\
+  >&2 echo "SERVER_URI_PANDAS=" $SERVER_URI_PANDAS; \
   fi
 
 # setup - workdir
