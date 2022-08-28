@@ -10,6 +10,7 @@ ADD ./ ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
 # install 
+RUN pip install --upgrade pip
 RUN cd server_pandas && pip install -r requirments.txt
 
 EXPOSE 4000

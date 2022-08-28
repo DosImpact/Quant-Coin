@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.Web
+      args:
+        - SERVER_URI_PANDAS=${SERVER_URI_PANDAS}
     container_name: web_server
     restart: always
     ports:
@@ -12,8 +14,8 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     env_file: .env
-    environment: 
-      - REACT_APP_SERVER_PANDAS=${REACT_APP_SERVER_PANDAS}
+    # environment: 
+      # - SERVER_URI_PANDAS=${SERVER_URI_PANDAS}
 
   pandas_server:
     build:
@@ -25,11 +27,12 @@ services:
       - "${PANDAS_PORT}:4000"
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    env_file: .env
+    # env_file: .env
     environment: 
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=${PANDAS_REDIS_HOST}
+      - REDIS_PORT=${PANDAS_REDIS_PORT}
+      - REDIS_PASSWORD=${PANDAS_REDIS_PASSWORD}
+      - HOST=0.0.0.0
       - PORT=4000
 
   redis:
@@ -42,8 +45,9 @@ services:
       - /bin/sh
       - -c
       - redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
-    env_file: .env
+    # env_file: .env
 
+# explicit env_file
 # docker-compose --env-file ./.env up -d
 # docker-compose up -d --build
 # redis-cli -h 127.0.0.1 -p 5001 -a dosimpact

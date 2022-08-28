@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const SERVER_PANDAS = process.env.REACT_APP_SERVER_PANDAS
+console.log("-->process.env.REACT_APP_SERVER_PANDAS",process.env.REACT_APP_SERVER_PANDAS);
 
 export const server_check = async () => {
     try {

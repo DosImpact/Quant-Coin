@@ -1,8 +1,17 @@
 FROM node:16
 
+ARG SERVER_URI_PANDAS http://0.0.0.0:4001
+
 ENV APP_ROOT /app
 ENV NODE_ENV production
 ENV WEB_PORT 80
+ENV SERVER_URI_PANDAS ${SERVER_URI_PANDAS}
+
+# validation
+RUN if [  -z $SERVER_URI_PANDAS ];then \
+  >&2 echo  "\n****************Warning*************\n"; \
+  >&2 echo "[Warning] SERVER_URI_PANDAS seems empty" ;\
+  fi
 
 # setup - workdir
 RUN mkdir -p ${APP_ROOT}
@@ -23,3 +32,5 @@ CMD ["npm","run","start:client"]
 # docker run -itd --name node_web node:16 
 # docker build -t ehdudtkatka/quant-coin-web:0.1 -f Dockerfile.Web .
 # docker push ehdudtkatka/quant-coin-web:0.1
+
+
