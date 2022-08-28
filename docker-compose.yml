@@ -1,0 +1,61 @@
+version: "0.1.0"
+
+# docker-compose --env-file ./.env up -d
+services:
+  web_server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.Web
+    container_name: web_server
+    restart: always
+    ports:
+      - "${WEB_PORT}:3000"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    # command:
+      # - /bin/bash
+    env_file: .env
+    environment: 
+      - REACT_APP_SERVER_PANDAS=${REACT_APP_SERVER_PANDAS}
+
+  pandas_server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.Pandas
+    container_name: pandas_server
+    restart: always
+    ports:
+      - "${PANDAS_PORT}:4000"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    # command:
+      # - /bin/bash
+    env_file: .env
+    environment: 
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - PORT=4000
+
+  # redis:
+  #   image: redis:latest
+  #   container_name: redis
+  #   restart: always
+  #   ports:
+  #     - "6379:6379"
+  #   command:
+  #     - /bin/sh
+  #     - -c
+  #     - redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+  #   env_file: .env
+  # node-test:
+  #     image: node:16
+  #     container_name: node-test
+  #     # restart: always
+  #     stdin_open: true # docker run -i
+  #     tty: true        # docker run -t
+  #     # entrypoint: /bin/bash #  docker run node:16 bash
+  #     command:
+  #       - /bin/bash
+  #     env_file: .env
+# docker-compose up -d --build

@@ -1,0 +1,27 @@
+{
+  "name": "prototype01",
+  "version": "1.0.0",
+  "description": "## Demo",
+  "main": "index.js",
+  "scripts": {
+    "start:client": "cd server_node && npm run start",
+    "start:pandas": "cd server_pandas && python app.py",
+    "dev": "concurrently --kill-others=on-fail \"cd ./server_pandas && python app.py\" \"cd ./server_node && yarn start\"",
+    "build":"npm run build:client",
+    "build:client":"cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cocoroe/prototype01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cocoroe/prototype01/issues"
+  },
+  "homepage": "https://github.com/Cocoroe/prototype01#readme",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "lite-server": "^2.6.1"
+  }
+}

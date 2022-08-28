@@ -1,0 +1,23 @@
+FROM node:16
+
+ENV APP_ROOT /app
+ENV NODE_ENV production
+ENV WEB_PORT 80
+
+# setup - workdir
+RUN mkdir -p ${APP_ROOT}
+ADD ./ ${APP_ROOT}
+WORKDIR ${APP_ROOT}
+
+# install client and node
+
+RUN cd server_node && yarn install
+RUN cd client && yarn install
+RUN cd client && yarn build
+
+EXPOSE ${WEB_PORT}
+
+CMD ["npm","run","start:client"]
+
+# docker run --rm -it --name node_web node:16 bash
+# docker run -itd --name node_web node:16 

@@ -1,0 +1,19 @@
+FROM python:3.8.13
+
+
+ENV APP_ROOT /app
+ENV PANDAS_PORT 4000
+
+# setup - workdir
+RUN mkdir -p ${APP_ROOT}
+ADD ./ ${APP_ROOT}
+WORKDIR ${APP_ROOT}
+
+# install 
+RUN cd server_pandas && pip install -r requirments.txt
+
+
+CMD ["python","server_pandas/app.py"]
+
+# docker run --rm -it --name server_pandas python:3.8.13 bash
+# docker run -itd --name server_pandas python:3.8.13 
