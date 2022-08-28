@@ -37,17 +37,17 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - PORT=4000
 
-  # redis:
-  #   image: redis:latest
-  #   container_name: redis
-  #   restart: always
-  #   ports:
-  #     - "6379:6379"
-  #   command:
-  #     - /bin/sh
-  #     - -c
-  #     - redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
-  #   env_file: .env
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "${REDIS_PORT}:6379"
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    env_file: .env
   # node-test:
   #     image: node:16
   #     container_name: node-test
