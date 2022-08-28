@@ -12,10 +12,16 @@ node {
 //      }
 //    }
    // https://www.jenkins.io/doc/book/pipeline/docker/#building-containers
-   stage('docker build/push') {
+   stage('Pandas docker build/push') {
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
        def dockerfile = 'Dockerfile.Pandas'
        def app = docker.build("ehdudtkatka/quant-coin-pandas:${commit_id}",  "-f ${dockerfile} ./").push()
+     }
+   }
+   stage('Web docker build/push') {
+     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+       def dockerfile = 'Dockerfile.Web'
+       def app = docker.build("ehdudtkatka/quant-coin-web:${commit_id}",  "-f ${dockerfile} ./").push()
      }
    }
 }
