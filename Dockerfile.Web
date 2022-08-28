@@ -1,6 +1,6 @@
 FROM node:16
 
-ARG SERVER_URI_PANDAS http://0.0.0.0:4001
+ARG SERVER_URI_PANDAS http://0.0.0.0:4000
 
 ENV APP_ROOT /app
 ENV NODE_ENV production
