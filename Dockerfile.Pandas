@@ -12,6 +12,7 @@ WORKDIR ${APP_ROOT}
 # install 
 RUN cd server_pandas && pip install -r requirments.txt
 
+EXPOSE 4000
 
 CMD ["python","server_pandas/app.py"]
 

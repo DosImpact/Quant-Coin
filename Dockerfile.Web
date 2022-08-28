@@ -15,7 +15,7 @@ RUN cd server_node && yarn install
 RUN cd client && yarn install
 RUN cd client && yarn build
 
-EXPOSE ${WEB_PORT}
+EXPOSE 3000
 
 CMD ["npm","run","start:client"]
 
